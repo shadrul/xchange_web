@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth,onAuthStateChanged } from "firebase/auth";
+import { getFirestore } from 'firebase/firestore';
 import Cookies from 'js-cookie';
 
 const firebaseConfig = {
@@ -17,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
-
+const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -29,4 +30,4 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-export { auth };
+export { auth, db };

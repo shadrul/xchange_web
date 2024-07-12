@@ -1,16 +1,11 @@
+// src/components/Navbar.js
 import React, { useState, useEffect } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';  // Import AddIcon
+import { AppBar, Toolbar, Typography, Button, Avatar, InputBase } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+import { auth } from '../firebase'; // Assuming auth is your Firebase auth instance
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -19,11 +14,10 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginLeft: 'auto', // Center the search bar
+  marginLeft: 'auto',
   marginRight: 'auto',
-  width: '50%', // Make the search bar wider
+  width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
     width: 'auto',
   },
 }));
@@ -46,13 +40,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      width: '30ch',
     },
   },
 }));
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -81,12 +76,14 @@ const Navbar = () => {
     }
   };
 
-
+  const handleExchange = () => {
+    navigate('/isbn');
+  };
 
   return (
     <AppBar position="static">
-      <Toolbar >
-        <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
           My App
         </Typography>
         <Search>
@@ -110,12 +107,14 @@ const Navbar = () => {
             Login
           </Button>
         )}
-        <Button variant="contained" color="secondary" startIcon={<AddIcon />}>
-          Exchange
-        </Button>
+        {location.pathname !== '/isbn' && (
+          <Button variant="contained" color="secondary" startIcon={<AddIcon />} sx={{ ml: 2 }} onClick={handleExchange}>
+            Exchange
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Navbar;

@@ -1,21 +1,25 @@
+// src/components/BookCard.js
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 
 const BookCard = ({ book }) => {
   return (
-    <Card sx={{ maxWidth: 300, margin: 2 }}>
+    <Card>
       <CardMedia
         component="img"
+        alt={book.title}
         height="140"
-        image={book.image}
-        alt={book.name}
+        image={book.cover_page}
       />
       <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {book.name}
+        <Typography gutterBottom variant="h5" component="div">
+          {book.title}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
-          Rating: {book.rating}
+        <Typography variant="body2" color="text.secondary">
+          Author: {book.authors.join(', ')}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          MRP: {book.MRP}
         </Typography>
       </CardContent>
     </Card>
