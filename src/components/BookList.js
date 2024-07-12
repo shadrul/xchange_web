@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Grid, CircularProgress } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import BookCard from './BookCard';
@@ -11,7 +11,7 @@ const BookList = () => {
   const [lastVisible, setLastVisible] = useState(null);
   const itemsPerPage = 10;
 
-  const fetchBooks = async () => {
+  const fetchBooks = useCallback(async () => {
     try {
       let q;
       if (lastVisible) {
@@ -52,7 +52,7 @@ const BookList = () => {
     } catch (error) {
       console.error('Error fetching books: ', error);
     }
-  };
+  }, [lastVisible]);
 
   useEffect(() => {
     fetchBooks();
