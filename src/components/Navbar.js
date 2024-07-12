@@ -84,7 +84,7 @@ const Navbar = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
-          My App
+          Xchange
         </Typography>
         <Search>
           <SearchIconWrapper>
