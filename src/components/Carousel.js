@@ -1,7 +1,6 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Paper, Button } from '@mui/material';
-import book1 from '../assets/book1.jpeg';
+import { Paper } from '@mui/material';
 import book3 from '../assets/book3.webp';
 import './Caraousel.css';
 

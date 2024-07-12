@@ -11,10 +11,6 @@ const BookList = () => {
   const [lastVisible, setLastVisible] = useState(null);
   const itemsPerPage = 10;
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
-
   const fetchBooks = async () => {
     try {
       let q;
@@ -57,6 +53,10 @@ const BookList = () => {
       console.error('Error fetching books: ', error);
     }
   };
+
+  useEffect(() => {
+    fetchBooks();
+  }, [fetchBooks]);
 
   return (
     <InfiniteScroll

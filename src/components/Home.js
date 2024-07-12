@@ -1,21 +1,21 @@
 // src/components/Home.js
-import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
+import React, { useEffect } from 'react';
+// import Cookies from 'js-cookie';
 import { Container } from '@mui/material';
 import Navbar from './Navbar';
 import MyCarousel from './Carousel';
 import BookList from './BookList';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  // const [user, setUser] = useState(null);
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    const userData = Cookies.get('user');
-    if (userData) {
-      setUser(JSON.parse(userData));
-    }
+    // const userData = Cookies.get('user');
+    // if (userData) {
+    //   setUser(JSON.parse(userData));
+    // }
   }, []);
 
   return (
